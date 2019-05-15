@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+
+keycloak-client:
+  issuer-uri: https://pog-dev-iam.cloudzcp.io/auth/realms/zcp
+  registration-id: estimate-gateway
+  registration-secret: 95246622-571b-420a-bab9-d32612371668
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          zcp-iam:
+            client-id: ${keycloak-client.registration-id}
+            client-secret: ${keycloak-client.registration-secret}
+            provider: keycloak
+            #scope: openid, email
+            #authorization-grant-type: authorization_code
+            #redirect-uri: http://localhost:8080
+        provider:
+          keycloak:
+            issuer-uri: ${keycloak-client.issuer-uri}
+            #authorization-uri: ${keycloak-client.issuer-uri}/protocol/openid-connect/auth
+            #token-uri: ${keycloak-client.issuer-uri}/protocol/openid-connect/token
+            #user-info-uri: ${keycloak-client.issuer-uri}/protocol/openid-connect/userinfo
+            #jwk-set-uri: ${keycloak-client.issuer-uri}/protocol/openid-connect/certs

@@ -1,0 +1,16 @@
+server:
+  port: 8089
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://pog-dev-iam.cloudzcp.io/auth/realms/zcp/protocol/openid-connect/certs
